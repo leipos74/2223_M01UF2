@@ -24,7 +24,24 @@ fi
 
 echo "(5) SEND_FILE: vaca.vaca"
 
-echo "FILE_NAME vaca.vaca" | nc $SERVER_AD $PORT
+FILE_NAME="vaca.vaca"
+
+
+echo "FILE_NAME $FILE_NAME" | nc $SERVER_AD $PORT
 
 echo "(6) COMPROBACION FILE_NAME: vaca.vaca"
 
+
+
+if [ "$MSG" != "OK_FILE_NAME" ]
+then
+	echo "ERROR 2: NOMBRE DE ARCHIVO INCORRETO"
+	exit 2
+fi
+
+cat vacas/$FILE_NAME" | nc $SERVER_AD $PORT
+
+
+
+
+exit 0
